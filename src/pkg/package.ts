@@ -72,15 +72,10 @@ export class Package {
 }
 
 function normalizePackage(json: PackageJson) {
+  // save bin to not screw with npx
+  const { bin } = json
   normalizeData(json, logger.warn, true )
-  const { name, bin } = json
-
-  // reduce bin
-  if (name && bin && typeof bin != 'string') {
-    if (Object.keys(bin).length == 1 && typeof bin[name] == 'string') {
-      json.bin = bin[name]
-    }
-  }
-
+  // restore bin
+  Object.assign(json, {bin})
   return json
 }
