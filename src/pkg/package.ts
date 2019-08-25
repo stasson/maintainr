@@ -77,5 +77,10 @@ function normalizePackage(json: PackageJson) {
   normalizeData(json, logger.warn, true )
   // restore bin
   Object.assign(json, {bin})
+
+  // delete extra entries
+  delete json.readme
+  delete json._id
+
   return json
 }

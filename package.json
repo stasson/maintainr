@@ -58,7 +58,6 @@
     "upath": "^1.1.2",
     "write-pkg": "^4.0.0"
   },
-  "_id": "maintainr@0.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stasson/maintainr.git"

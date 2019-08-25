@@ -72,7 +72,7 @@ prog
     console.log(dump)
   })
 
-// pkg-update
+// pkg-norm
 prog
   .command('pkg-norm', 'normalize package.json')
   .option('--package <path>', 'path to package.json')
@@ -82,12 +82,13 @@ prog
     return pkg.save()
   })
 
-// pkg-dump
+// pkg-up
 prog
   .command('pkg-up', 'update package dependencies')
   .option('--package <path>', 'path to package.json')
   .action(async (options?) => {
     const pkg = await Package.load(options.path)
     await updatePackage(pkg)
+    pkg.normalize()
     return pkg.save()
   })
