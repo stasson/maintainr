@@ -6,7 +6,7 @@
     "name": "stasson",
     "email": "sebastien.tasson@gmail.com"
   },
-  "bin": "bin/maintainer.js",
+  "bin": "bin/maintainr.js",
   "main": "lib/index",
   "types": "lib/index",
   "files": [
@@ -14,10 +14,12 @@
     "bin"
   ],
   "scripts": {
-    "prepare": "tsc",
+    "prepare": "rimraf lib && tsc",
     "clean": "rimraf lib",
     "prepack": "rimraf lib && tsc",
-    "test": "jest"
+    "test": "jest",
+    "release": "standard-version",
+    "commit": "standard-commit"
   },
   "gitHooks": {
     "commit-msg": "standard-commithook"
