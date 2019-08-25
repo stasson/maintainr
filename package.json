@@ -31,6 +31,7 @@
     "@types/js-yaml": "^3.12.1",
     "@types/node": "^10.14.16",
     "@types/normalize-package-data": "^2.4.0",
+    "@types/semver": "^6.0.1",
     "jest": "^24.9.0",
     "rimraf": "^3.0.0",
     "standard-commit": "^3.0.2",
@@ -43,6 +44,7 @@
   "dependencies": {
     "cac": "^6.5.2",
     "chalk": "^2.4.2",
+    "execa": "^2.0.4",
     "find-up": "^4.1.0",
     "fs-extra": "^8.1.0",
     "joycon": "^2.2.5",
@@ -50,7 +52,9 @@
     "log-symbols": "^3.0.0",
     "loud-rejection": "^2.1.0",
     "normalize-package-data": "^2.5.0",
+    "pacote": "^9.5.8",
     "read-pkg": "^5.2.0",
+    "semver": "^6.3.0",
     "upath": "^1.1.2",
     "write-pkg": "^4.0.0"
   },

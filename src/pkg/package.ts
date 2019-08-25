@@ -9,7 +9,7 @@ import {logger} from '..'
 type PackageJson = readPkg.PackageJson
 
 export class Package {
-  private constructor(private path: string, private json: PackageJson) {}
+  private constructor(readonly path: string, readonly json: PackageJson) {}
 
   public async save() {
     const { path, json } = this

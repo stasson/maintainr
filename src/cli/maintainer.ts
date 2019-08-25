@@ -3,6 +3,7 @@ import path from 'upath'
 import readPkg from 'read-pkg'
 import { Package, logger } from '..'
 import yaml from 'js-yaml'
+import { updatePackage } from '..';
 
 const prog = cac()
 
@@ -27,7 +28,7 @@ export async function run(argv?: string[]) {
 
 // pkg-set
 prog
-  .command('pkg-set <key> <value>', 'set a key in the package.json')
+  .command('pkg-set <key> <value>', 'set an entry in the package.json')
   .option('--package <path>', 'path to package.json')
   .action(async (key, value, options?) => {
     const pkg = await Package.load(options.path)
@@ -43,7 +44,7 @@ prog
 
 // pkg-del
 prog
-  .command('pkg-del <key>', 'deelte a key in the package.json')
+  .command('pkg-del <key>', 'delete an entry in the package.json')
   .option('--package <path>', 'path to package.json')
   .action(async (key, options?) => {
     const pkg = await Package.load(options.path)
@@ -63,7 +64,7 @@ prog
 
 // pkg-dump
 prog
-  .command('pkg-dump', 'dump package.json')
+  .command('pkg-dump', 'dump package.json entries')
   .option('--package <path>', 'path to package.json')
   .action(async (options?) => {
     const pkg = await Package.load(options.path)
@@ -71,12 +72,22 @@ prog
     console.log(dump)
   })
 
-// pkg-fix
+// pkg-update
 prog
   .command('pkg-norm', 'normalize package.json')
   .option('--package <path>', 'path to package.json')
   .action(async (options?) => {
     const pkg = await Package.load(options.path)
     pkg.normalize()
+    return pkg.save()
+  })
+
+// pkg-dump
+prog
+  .command('pkg-up', 'update package dependencies')
+  .option('--package <path>', 'path to package.json')
+  .action(async (options?) => {
+    const pkg = await Package.load(options.path)
+    await updatePackage(pkg)
     return pkg.save()
   })
