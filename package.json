@@ -1,7 +1,7 @@
 {
   "name": "maintainr",
   "version": "0.0.1",
-  "description": "package updater utils",
+  "description": "misc repo maintainer utils",
   "author": {
     "name": "stasson",
     "email": "sebastien.tasson@gmail.com"
@@ -16,8 +16,8 @@
   "scripts": {
     "prepare": "rimraf lib && tsc",
     "clean": "rimraf lib",
-    "prepack": "rimraf lib && tsc",
-    "test": "jest",
+    "_prepack": "jest",
+    "_test": "jest",
     "release": "standard-version",
     "commit": "standard-commit"
   },
@@ -26,14 +26,41 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/fs-extra": "^8.0.0",
     "@types/jest": "^24.0.18",
+    "@types/js-yaml": "^3.12.1",
     "@types/node": "^10.14.16",
+    "@types/normalize-package-data": "^2.4.0",
     "jest": "^24.9.0",
     "rimraf": "^3.0.0",
     "standard-commit": "^3.0.2",
     "standard-version": "^7.0.0",
     "ts-jest": "^24.0.2",
+    "type-fest": "^0.7.1",
     "typescript": "^3.5.3",
     "yorkie": "^2.0.0"
-  }
+  },
+  "dependencies": {
+    "cac": "^6.5.2",
+    "chalk": "^2.4.2",
+    "find-up": "^4.1.0",
+    "fs-extra": "^8.1.0",
+    "joycon": "^2.2.5",
+    "js-yaml": "^3.13.1",
+    "log-symbols": "^3.0.0",
+    "loud-rejection": "^2.1.0",
+    "normalize-package-data": "^2.5.0",
+    "read-pkg": "^5.2.0",
+    "upath": "^1.1.2",
+    "write-pkg": "^4.0.0"
+  },
+  "_id": "maintainr@0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/maintainr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stasson/maintainr/issues"
+  },
+  "homepage": "https://github.com/stasson/maintainr#readme"
 }
