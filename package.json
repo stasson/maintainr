@@ -1,0 +1,37 @@
+{
+  "name": "maintainr",
+  "version": "0.0.1",
+  "description": "package updater utils",
+  "author": {
+    "name": "stasson",
+    "email": "sebastien.tasson@gmail.com"
+  },
+  "bin": "bin/maintainer.js",
+  "main": "lib/index",
+  "types": "lib/index",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "scripts": {
+    "prepare": "tsc",
+    "clean": "rimraf lib",
+    "prepack": "rimraf lib && tsc",
+    "test": "jest"
+  },
+  "gitHooks": {
+    "commit-msg": "standard-commithook"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^10.14.16",
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
+    "standard-commit": "^3.0.2",
+    "standard-version": "^7.0.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3",
+    "yorkie": "^2.0.0"
+  }
+}
