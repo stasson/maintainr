@@ -16,10 +16,15 @@
   "scripts": {
     "prepare": "rimraf lib && tsc",
     "clean": "rimraf lib",
-    "_prepack": "jest",
-    "_test": "jest",
-    "release": "standard-version",
-    "commit": "standard-commit"
+    "test": "run-s test:*",
+    "test:lint": "cross-env NODE_ENV=production tslint src/**/*.ts -t verbose",
+    "format": "prettier --write src/**/*",
+    "commit": "standard-commit",
+    "release": "run-s release:*",
+    "release:clean": "run-s clean",
+    "release:checks": "run-s test:*",
+    "release:version": "standard-version",
+    "release:publish": "git push --follow-tags && npm publish"
   },
   "gitHooks": {
     "commit-msg": "standard-commithook"
@@ -32,11 +37,17 @@
     "@types/node": "^10.17.0",
     "@types/normalize-package-data": "^2.4.0",
     "@types/semver": "^6.2.0",
+    "cross-env": "^6.0.3",
     "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "standard-commit": "^3.2.0",
     "standard-version": "^7.0.0",
     "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
     "type-fest": "^0.8.1",
     "typescript": "^3.6.4",
     "yorkie": "^2.0.0"

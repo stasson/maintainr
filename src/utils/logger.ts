@@ -1,11 +1,13 @@
 import symbols from 'log-symbols'
 import chalk from 'chalk'
-import {format} from 'util'
+import { format } from 'util'
 
 export type LogType = 'debug' | 'log' | 'info' | 'warn' | 'error' | 'success'
 export type LogFunction = { (...args: any): void }
 
 const isDebug = !!process.env.DEBUG
+
+/* tslint:disable:no-console */
 
 export const logger: Record<LogType, LogFunction> = {
   debug: (...args) => {
@@ -16,7 +18,7 @@ export const logger: Record<LogType, LogFunction> = {
     console.log(...args)
   },
   info: (...args) => {
-    console.info(symbols.info,  ...args)
+    console.info(symbols.info, ...args)
   },
   warn: (...args) => {
     const label = chalk.yellow('warning:'.padEnd(8))

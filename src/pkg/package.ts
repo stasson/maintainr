@@ -4,7 +4,7 @@ import readPkg from 'read-pkg'
 import findUp from 'find-up'
 import { JsonObject } from 'type-fest'
 import normalizeData from 'normalize-package-data'
-import {logger} from '..'
+import { logger } from '..'
 
 type PackageJson = readPkg.PackageJson
 
@@ -74,9 +74,9 @@ export class Package {
 function normalizePackage(json: PackageJson) {
   // save bin to not screw with npx
   const { bin } = json
-  normalizeData(json, logger.warn, true )
+  normalizeData(json, logger.warn, true)
   // restore bin
-  Object.assign(json, {bin})
+  Object.assign(json, { bin })
 
   // delete extra entries
   delete json.readme

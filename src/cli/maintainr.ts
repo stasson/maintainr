@@ -3,7 +3,7 @@ import path from 'upath'
 import readPkg from 'read-pkg'
 import { Package, logger } from '..'
 import yaml from 'js-yaml'
-import { updatePackage } from '..';
+import { updatePackage } from '..'
 
 const prog = cac()
 
@@ -34,7 +34,7 @@ prog
     const pkg = await Package.load(options.path)
     key = String(key)
     try {
-      value = yaml.safeLoad(value) 
+      value = yaml.safeLoad(value)
     } catch (err) {
       throw Error('invalid value argument')
     }
@@ -59,7 +59,7 @@ prog
   .action(async (key, options?) => {
     const pkg = await Package.load(options.path)
     const value = pkg.get(String(key))
-    console.log(value)
+    logger.log(value)
   })
 
 // pkg-dump
@@ -68,8 +68,8 @@ prog
   .option('--package <path>', 'path to package.json')
   .action(async (options?) => {
     const pkg = await Package.load(options.path)
-    const dump = JSON.stringify(pkg.toJSON(),null,2)
-    console.log(dump)
+    const dump = JSON.stringify(pkg.toJSON(), null, 2)
+    logger.log(dump)
   })
 
 // pkg-norm
