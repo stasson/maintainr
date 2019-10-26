@@ -3,7 +3,6 @@ import path from 'upath'
 import readPkg from 'read-pkg'
 import { Package, logger } from '..'
 import yaml from 'js-yaml'
-import { updatePackage } from '..'
 
 const prog = cac()
 
@@ -88,7 +87,7 @@ prog
   .option('--package <path>', 'path to package.json')
   .action(async (options?) => {
     const pkg = await Package.load(options.path)
-    await updatePackage(pkg)
+    await pkg.update()
     pkg.normalize()
     return pkg.save()
   })
