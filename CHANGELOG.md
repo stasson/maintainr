@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/stasson/maintainr/compare/v0.0.4...v0.0.5) (2019-10-26)
+
+
+### Features
+
+* format debug logs ([befff96](https://github.com/stasson/maintainr/commit/befff96491a28b8d88bb648629fdbdf7170465a7))
+
 ### [0.0.4](https://github.com/stasson/maintainr/compare/v0.0.3...v0.0.4) (2019-08-25)
 
 
