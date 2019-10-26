@@ -1,5 +1,6 @@
 import symbols from 'log-symbols'
 import chalk from 'chalk'
+import {format} from 'util'
 
 export type LogType = 'debug' | 'log' | 'info' | 'warn' | 'error' | 'success'
 export type LogFunction = { (...args: any): void }
@@ -8,7 +9,8 @@ const isDebug = !!process.env.DEBUG
 
 export const logger: Record<LogType, LogFunction> = {
   debug: (...args) => {
-    if (isDebug) console.debug(chalk.grey(...args))
+    const message = format('DEBUG:'.padEnd(8), ...args)
+    if (isDebug) console.debug(chalk.grey(message))
   },
   log: (...args) => {
     console.log(...args)
