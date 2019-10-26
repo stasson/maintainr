@@ -17,6 +17,8 @@ Commands:
   pkg-dump               dump package.json entries
   pkg-norm               normalize package.json
   pkg-up                 update package dependencies
+  git-dump               dump git info
+  git-status             dump git status
 
 For more info, run any command with the `--help` flag:
   $ maintainr pkg-set --help
@@ -25,10 +27,13 @@ For more info, run any command with the `--help` flag:
   $ maintainr pkg-dump --help
   $ maintainr pkg-norm --help
   $ maintainr pkg-up --help
+  $ maintainr git-dump --help
+  $ maintainr git-status --help
 
 Options:
-  -v, --version  Display version number
-  -h, --help     Display this message
+  -j, --json     dump in json format 
+  -v, --version  Display version number 
+  -h, --help     Display this message 
 ```
 
 ## Lib
