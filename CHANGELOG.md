@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/stasson/maintainr/compare/v0.0.5...v0.0.6) (2019-10-26)
+
+
+### Features
+
+* add support for git ([47e6ad0](https://github.com/stasson/maintainr/commit/47e6ad087dd2ca09219126940de022e34b82b162))
+* git dump and status ([5cfc83b](https://github.com/stasson/maintainr/commit/5cfc83bce0f0995e071ff6337f90ce311c372766))
+
 ### [0.0.5](https://github.com/stasson/maintainr/compare/v0.0.4...v0.0.5) (2019-10-26)
 
 
