@@ -1,10 +1,30 @@
 import cac from 'cac'
 import path from 'upath'
 import readPkg from 'read-pkg'
-import { Package, logger } from '..'
+import { Package, logger, git } from '..'
 import yaml from 'js-yaml'
 
 const prog = cac()
+
+prog.option('-j, --json', 'dump in json format')
+
+function dump(
+  x: any,
+  options?: {
+    json?: boolean
+  }
+) {
+  if (options && options.json) {
+    logger.log(JSON.stringify(x, null, 2))
+  } else {
+    logger.log(
+      yaml.dump(x, {
+        indent: 2,
+        noRefs: true
+      })
+    )
+  }
+}
 
 export async function run(argv?: string[]) {
   const pkg = (await readPkg({
@@ -58,7 +78,7 @@ prog
   .action(async (key, options?) => {
     const pkg = await Package.load(options.path)
     const value = pkg.get(String(key))
-    logger.log(value)
+    dump(value)
   })
 
 // pkg-dump
@@ -67,8 +87,7 @@ prog
   .option('--package <path>', 'path to package.json')
   .action(async (options?) => {
     const pkg = await Package.load(options.path)
-    const dump = JSON.stringify(pkg.toJSON(), null, 2)
-    logger.log(dump)
+    dump(pkg.toJSON(), options)
   })
 
 // pkg-norm
@@ -90,4 +109,32 @@ prog
     await pkg.update()
     pkg.normalize()
     return pkg.save()
+  })
+
+prog
+  .command('git-dump', 'dump git info')
+  .option('--remote <remote>', 'remote name, default to origin')
+  .action(async (options?) => {
+    const remoteName = options.remote || 'origin'
+    const remotes = await git.getRemotes(true)
+    const remoteOrigin = remotes.find(({ name }) => name === remoteName)
+    const { push: url } = (remoteOrigin && remoteOrigin.refs) || {
+      push: 'undefined'
+    }
+    const path = await git.revparse(['--show-toplevel'])
+    const status = await git.status()
+    const { current: branch, files } = status
+    const dirty = files.length != 0
+    const user = (await git.raw(['config', 'user.name'])).trim()
+    const email = (await git.raw(['config', 'user.email'])).trim()
+
+    dump({ [remoteName]: url, path, branch, user, email, dirty }, options)
+  })
+
+prog
+  .command('git-status', 'dump git status')
+  .option('--remote <remote>', 'remote name, default to origin')
+  .action(async (options?) => {
+    const status = await git.status()
+    dump({ status }, options)
   })
