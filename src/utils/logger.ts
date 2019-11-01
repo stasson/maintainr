@@ -9,7 +9,16 @@ const isDebug = !!process.env.DEBUG
 
 /* tslint:disable:no-console */
 
-export const logger: Record<LogType, LogFunction> = {
+export const logger: Record<LogType, LogFunction> & {
+  symbols: {
+    readonly info: string
+    readonly success: string
+    readonly warning: string
+    readonly error: string
+  }
+} = {
+  symbols,
+
   debug: (...args) => {
     const message = format('DEBUG:'.padEnd(8), ...args)
     if (isDebug) console.debug(chalk.grey(message))
