@@ -11,15 +11,15 @@ import pacote from 'pacote'
 type PackageJson = readPkg.PackageJson
 
 export class Package {
-  private constructor(readonly path: string, readonly json: PackageJson) {}
+  private constructor(readonly pkgPath: string, readonly json: PackageJson) {}
 
   public async save() {
-    const { path, json } = this
+    const { pkgPath: path, json } = this
     return writePkg(path, json as JsonObject, { normalize: true })
   }
 
   public saveSync() {
-    const { path, json } = this
+    const { pkgPath: path, json } = this
     writePkg.sync(path, json as JsonObject, { normalize: true })
   }
 
@@ -32,9 +32,9 @@ export class Package {
     return new Package(path.join(cwd, 'package.json'), json)
   }
 
-  static async loadSync(cwd?: string) {
+  static loadSync(cwd?: string) {
     if (!cwd) {
-      const pkgup = await findUp.sync('package.json')
+      const pkgup = findUp.sync('package.json')
       cwd = (pkgup && path.dirname(pkgup)) || undefined
     }
     const json = readPkg.sync({ cwd, normalize: false })
