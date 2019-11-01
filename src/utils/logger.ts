@@ -1,5 +1,4 @@
-import symbols from 'log-symbols'
-import chalk from 'chalk'
+import colors from 'ansi-colors'
 import { format } from 'util'
 
 export type LogType = 'debug' | 'log' | 'info' | 'warn' | 'error' | 'success'
@@ -7,40 +6,63 @@ export type LogFunction = { (...args: any): void }
 
 const isDebug = !!process.env.DEBUG
 
+const logColors = {
+  debug: colors.grey,
+  info: colors.blue,
+  success: colors.green,
+  warning: colors.yellow,
+  error: colors.red
+}
+
+const logSymbols =
+  process.platform !== 'win32' ||
+  process.env.CI ||
+  process.env.TERM === 'xterm-256color'
+    ? {
+        info: colors.blue('ℹ'),
+        success: colors.green('✔'),
+        warning: colors.yellow('⚠'),
+        error: colors.red('✖')
+      }
+    : {
+        info: colors.blue('i'),
+        success: colors.green('√'),
+        warning: colors.yellow('‼'),
+        error: colors.red('×')
+      }
+
 /* tslint:disable:no-console */
-
-export const logger: Record<LogType, LogFunction> & {
-  symbols: {
-    readonly info: string
-    readonly success: string
-    readonly warning: string
-    readonly error: string
-  }
-} = {
-  symbols,
-
-  debug: (...args) => {
-    const message = format('DEBUG:'.padEnd(8), ...args)
-    if (isDebug) console.debug(chalk.grey(message))
+const logFunctions: Record<LogType, LogFunction> = {
+  debug: (...args: any) => {
+    const message = format('DEBUG:\n', ...args)
+    if (isDebug) console.debug(colors.grey(message))
   },
-  log: (...args) => {
+  log: (...args: any) => {
     console.log(...args)
   },
-  info: (...args) => {
-    console.info(symbols.info, ...args)
+  info: (...args: any) => {
+    console.info(logSymbols.info, ...args)
   },
-  warn: (...args) => {
-    const label = chalk.yellow('warning:'.padEnd(8))
-    console.debug(symbols.warning, label, ...args)
+  warn: (...args: any) => {
+    const label = colors.yellow('warning:'.padEnd(8))
+    console.debug(logSymbols.warning, label, ...args)
   },
-  error: (...args) => {
-    const label = chalk.red('error:'.padEnd(8))
-    console.debug(symbols.error, label, ...args)
+  error: (...args: any) => {
+    const label = colors.red('error:'.padEnd(8))
+    console.debug(logSymbols.error, label, ...args)
   },
-  success: (...args) => {
-    const label = chalk.green('success:'.padEnd(8))
-    console.debug(symbols.success, label, ...args)
+  success: (...args: any) => {
+    const label = colors.green('success:'.padEnd(8))
+    console.debug(logSymbols.success, label, ...args)
   }
 }
+/* tslint:enable:no-console */
+
+export const logger = Object.assign(logFunctions, {
+  // log symbols
+  symbols: logSymbols,
+  // log colors
+  colors: logColors
+})
 
 export default logger
