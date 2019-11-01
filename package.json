@@ -17,6 +17,7 @@
     "prepare": "rimraf lib && tsc",
     "start": "rimraf lib && tsc && node bin/maintainr.js",
     "test": "run-s test:*",
+    "test:jest": "jest",
     "test:lint": "cross-env NODE_ENV=production tslint src/**/*.ts -t verbose",
     "format": "prettier --write src/**/*",
     "commit": "standard-commit",
@@ -52,14 +53,13 @@
     "yorkie": "^2.0.0"
   },
   "dependencies": {
+    "ansi-colors": "^4.1.1",
     "cac": "^6.5.3",
-    "chalk": "^2.4.2",
     "execa": "^3.2.0",
     "find-up": "^4.1.0",
     "fs-extra": "^8.1.0",
     "joycon": "^2.2.5",
     "js-yaml": "^3.13.1",
-    "log-symbols": "^3.0.0",
     "loud-rejection": "^2.2.0",
     "normalize-package-data": "^2.5.0",
     "pacote": "^9.5.9",
