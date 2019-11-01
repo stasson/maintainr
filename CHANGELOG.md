@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/stasson/maintainr/compare/v0.0.7...v0.0.8) (2019-11-01)
+
+
+### Features
+
+* export colors ([73bf1b6](https://github.com/stasson/maintainr/commit/73bf1b6b70b3f7ce67c151d867862919c2aa36a0))
+* export symbols ([bdfe4c6](https://github.com/stasson/maintainr/commit/bdfe4c6bf0b0f0c0fcf0db4fab459f6a5f51a2de))
+
+
+### Bug Fixes
+
+* util export colors ([5907254](https://github.com/stasson/maintainr/commit/5907254a0bd5928f17e8661e9b9044f9d9b00a43))
+
 ### [0.0.7](https://github.com/stasson/maintainr/compare/v0.0.6...v0.0.7) (2019-11-01)
 
 
