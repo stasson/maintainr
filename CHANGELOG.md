@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/stasson/maintainr/compare/v0.0.6...v0.0.7) (2019-11-01)
+
+
+### Bug Fixes
+
+* package load-sync should be async ([ae58aa5](https://github.com/stasson/maintainr/commit/ae58aa523e7e8c390b1862a79cbbb15a68584b5b))
+
 ### [0.0.6](https://github.com/stasson/maintainr/compare/v0.0.5...v0.0.6) (2019-10-26)
 
 
