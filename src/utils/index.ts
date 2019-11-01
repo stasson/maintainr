@@ -1,2 +1,2 @@
-export { default as logger } from './logger'
-export { default as colors } from 'ansi-colors'
+export {default as logger} from './logger'
+export {default as colors } from './colors'
