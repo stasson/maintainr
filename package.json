@@ -42,7 +42,7 @@
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "standard-commit": "^3.2.0",
-    "standard-version": "^7.0.0",
+    "standard-version": "^8.0.1",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
